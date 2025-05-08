@@ -25,6 +25,8 @@ db.sequelize = sequelize;
 
 db.user = require("../models/ีuser.model")(sequelize, Sequelize);
 db.role = require("../models/role.model")(sequelize, Sequelize);
+db.type = require("../models/type.model")(sequelize, Sequelize);
+db.accommodation = require("../models/accommodation.model")(sequelize, Sequelize);
 
 
 //Relationship (Many to Many)
@@ -34,5 +36,19 @@ db.role.belongsToMany(db.user, {
 db.user.belongsToMany(db.role, {
     through: "user_roles"
 });
+
+//Relationship (One to Many)
+db.type.hasMany(db.accommodation, {
+
+    foreignKey: "type_id",
+    // onDelete: "SET NULL" 
+}
+); //หนึ่งประเภท มีหลายห้อง
+db.accommodation.belongsTo(db.type, {
+
+    foreignKey: "type_id"
+}
+); //ห้องหนึ่งห้อง มีประเภทเดียว
+
 
 module.exports = db;

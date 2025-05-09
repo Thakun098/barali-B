@@ -31,6 +31,10 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.DECIMAL(10, 2),
             allowNull: false
         },
+        discount: {
+            type: Sequelize.INTEGER,
+            allowNull: true
+        },
         amenities: {
             type: Sequelize.TEXT,
             allowNull: true
@@ -39,6 +43,19 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.INTEGER,
             allowNull: false,
             default: 0
+        },
+        room_size: {
+            type: Sequelize.INTEGER,
+            allowNull: false,
+            default: 0
+        },
+        room_view: {
+            type: Sequelize.STRING,
+            allowNull: false
+        },
+        bed_type: {
+            type: Sequelize.STRING,
+            allowNull: false
         },
         image_name: {
             type: Sequelize.STRING,

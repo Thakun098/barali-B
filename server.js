@@ -1,24 +1,21 @@
 const express = require("express");
-require("dotenv/config");
 const app = express();
 const db = require("./app/models");
 const cors = require("cors");
-const path = require("path")
-
+const path = require("path");
+require("dotenv/config");
 
 app.use(cors({ origin: "*" }));
+
 app.use(express.json());
-app.use("/uploads", express.static(path.join(__dirname, "uploads")))
 
-// db.type.sync({ alter: true })
-//     .then(() => {
-//         console.log("Table type Altered")
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
-//     }
-//     )
-// db.accommodation.sync({ alter: true })
+
+
+// db.activity.sync({ alter: true })
 //     .then(() => {
-//         console.log("Table accommodation Altered")
+//         console.log("Table activity Altered")
 
 //     }
 //     )
@@ -36,6 +33,7 @@ app.get('/', (req, res) => {
 
 
 require("./app/routes/auth.routes")(app);
+require("./app/routes/activity.routes")(app);
 require("./app/routes/accommodation.routes")(app);
 
 const port = process.env.SERVER_PORT || 5000;

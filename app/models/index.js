@@ -27,6 +27,7 @@ db.user = require("../models/ีuser.model")(sequelize, Sequelize);
 db.role = require("../models/role.model")(sequelize, Sequelize);
 db.type = require("../models/type.model")(sequelize, Sequelize);
 db.accommodation = require("../models/accommodation.model")(sequelize, Sequelize);
+db.activity = require("../models/activity.model")(sequelize, Sequelize);
 
 
 //Relationship (Many to Many)

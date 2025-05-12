@@ -45,3 +45,15 @@ exports.getPromotion = async (req, res) => {
         res.status(500).json({ message: "Error fetching Promotions" })
     }
 }
+
+exports.getPopularAccommodation = async (req, res) => {
+    try {
+        const limitNum = 4;
+        const minRate = 4.5
+
+        res.status(200).json(popularAccommodation)
+}
+    catch (error) {
+        res.status(500).json({ message: "Error fetching Popular Accommodations" })
+    }
+}

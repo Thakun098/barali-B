@@ -28,6 +28,7 @@ db.role = require("../models/role.model")(sequelize, Sequelize);
 db.type = require("../models/type.model")(sequelize, Sequelize);
 db.accommodation = require("../models/accommodation.model")(sequelize, Sequelize);
 db.activity = require("../models/activity.model")(sequelize, Sequelize);
+db.booking = require("../models/booking.model")(sequelize, Sequelize);
 
 
 //Relationship (Many to Many)
@@ -42,7 +43,7 @@ db.user.belongsToMany(db.role, {
 db.type.hasMany(db.accommodation, {
 
     foreignKey: "type_id",
-    // onDelete: "SET NULL" 
+    onDelete: "RESTRICT"
 }
 ); //หนึ่งประเภท มีหลายห้อง
 db.accommodation.belongsTo(db.type, {
@@ -50,6 +51,22 @@ db.accommodation.belongsTo(db.type, {
     foreignKey: "type_id"
 }
 ); //ห้องหนึ่งห้อง มีประเภทเดียว
+
+db.accommodation.hasMany(db.booking, {
+    foreignKey: "accommodationId",
+    onDelete: "RESTRICT"
+}
+); //หนึ่งห้อง มีหลายการจอง
+
+db.user.hasMany(db.booking, {
+    foreignKey: "userId",
+    onDelete: "RESTRICT"
+}
+); //หนึ่งผู้ใช้ มีหลายการจอง
+
+
+
+
 
 
 module.exports = db;
